@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48cmVjdCB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgcng9IjEyIiBmaWxsPSIjMDUwZDFhIi8+PHRleHQgeD0iNTAiIHk9IjYzIiBmb250LWZhbWlseT0iR2VvcmdpYSxzZXJpZiIgZm9udC1zaXplPSI0MCIgZm9udC13ZWlnaHQ9ImJvbGQiIGZpbGw9IiM0YTllZmYiIHRleHQtYW5jaG9yPSJtaWRkbGUiPlZEPC90ZXh0Pjwvc3ZnPg==">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>404 — Page Not Found · Vasilis Diamantopoulos</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=JetBrains+Mono:wght@300;400&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --navy: #050d1a;
+      --deep: #07152a;
+      --mid: #0c2040;
+      --accent: #4a9eff;
+      --gold: #c9a84c;
+      --text: #c8d8f0;
+      --muted: #6b89b0;
+      --white: #e8f0ff;
+      --glow: rgba(74, 158, 255, 0.15);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--navy);
+      color: var(--text);
+      font-family: 'Outfit', sans-serif;
+      font-weight: 300;
+      overflow-x: hidden;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Star field */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        radial-gradient(1px 1px at 15% 20%, rgba(255,255,255,0.8) 0%, transparent 100%),
+        radial-gradient(1px 1px at 35% 70%, rgba(255,255,255,0.6) 0%, transparent 100%),
+        radial-gradient(1.5px 1.5px at 50% 35%, rgba(200,220,255,0.9) 0%, transparent 100%),
+        radial-gradient(1px 1px at 70% 15%, rgba(255,255,255,0.7) 0%, transparent 100%),
+        radial-gradient(1px 1px at 80% 60%, rgba(255,255,255,0.5) 0%, transparent 100%),
+        radial-gradient(1px 1px at 90% 80%, rgba(200,220,255,0.8) 0%, transparent 100%),
+        radial-gradient(1px 1px at 25% 90%, rgba(255,255,255,0.6) 0%, transparent 100%),
+        radial-gradient(1.5px 1.5px at 60% 85%, rgba(255,255,255,0.7) 0%, transparent 100%),
+        radial-gradient(1px 1px at 45% 10%, rgba(200,220,255,0.9) 0%, transparent 100%),
+        radial-gradient(1px 1px at 8% 55%, rgba(255,255,255,0.5) 0%, transparent 100%),
+        radial-gradient(1px 1px at 93% 40%, rgba(255,255,255,0.6) 0%, transparent 100%),
+        radial-gradient(2px 2px at 55% 50%, rgba(74,158,255,0.4) 0%, transparent 100%),
+        radial-gradient(1px 1px at 12% 75%, rgba(255,255,255,0.7) 0%, transparent 100%),
+        radial-gradient(1px 1px at 67% 42%, rgba(200,220,255,0.5) 0%, transparent 100%),
+        radial-gradient(1.5px 1.5px at 88% 25%, rgba(255,255,255,0.8) 0%, transparent 100%),
+        radial-gradient(1px 1px at 3% 38%, rgba(255,255,255,0.6) 0%, transparent 100%),
+        radial-gradient(1px 1px at 77% 90%, rgba(200,220,255,0.7) 0%, transparent 100%),
+        radial-gradient(1px 1px at 42% 62%, rgba(255,255,255,0.4) 0%, transparent 100%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* Nebula blobs */
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 600px 400px at 20% 30%, rgba(20,60,120,0.4) 0%, transparent 70%),
+        radial-gradient(ellipse 400px 600px at 80% 70%, rgba(10,40,90,0.35) 0%, transparent 70%),
+        radial-gradient(ellipse 300px 300px at 50% 50%, rgba(74,158,255,0.06) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 100;
+      padding: 1.2rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(5, 13, 26, 0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(74, 158, 255, 0.12);
+    }
+
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem;
+      color: var(--white);
+      letter-spacing: 0.1em;
+      font-style: italic;
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem;
+      color: var(--muted);
+      text-decoration: none;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      transition: color 0.3s;
+    }
+
+    .nav-links a:hover { color: var(--accent); }
+
+    /* MAIN CONTENT */
+    main {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      z-index: 1;
+      padding: 8rem 2rem 4rem;
+      text-align: center;
+    }
+
+    .error-container {
+      max-width: 680px;
+      animation: fadeSlideUp 1s ease both;
+    }
+
+    /* Big animated 404 */
+    .error-code {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: clamp(5rem, 18vw, 10rem);
+      font-weight: 300;
+      color: transparent;
+      background: linear-gradient(135deg, var(--accent) 0%, rgba(74,158,255,0.2) 60%, var(--gold) 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      letter-spacing: 0.08em;
+      line-height: 1;
+      margin-bottom: 1.5rem;
+      position: relative;
+      animation: pulse-glow 4s ease-in-out infinite;
+    }
+
+    .error-code::after {
+      content: '404';
+      position: absolute;
+      inset: 0;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: inherit;
+      font-weight: 300;
+      color: transparent;
+      -webkit-text-stroke: 1px rgba(74, 158, 255, 0.12);
+      letter-spacing: inherit;
+      line-height: inherit;
+      animation: pulse-glow 4s ease-in-out infinite reverse;
+      pointer-events: none;
+    }
+
+    @keyframes pulse-glow {
+      0%, 100% { filter: drop-shadow(0 0 20px rgba(74,158,255,0.3)); }
+      50%       { filter: drop-shadow(0 0 50px rgba(74,158,255,0.6)); }
+    }
+
+    /* Orbit illustration */
+    .orbit-wrap {
+      margin: 0 auto 2rem;
+      width: 80px;
+      height: 80px;
+      position: relative;
+    }
+
+    .orbit-wrap svg {
+      width: 100%;
+      height: 100%;
+      animation: spin 12s linear infinite;
+    }
+
+    @keyframes spin {
+      from { transform: rotate(0deg); }
+      to   { transform: rotate(360deg); }
+    }
+
+    /* Label */
+    .error-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      opacity: 0.9;
+      margin-bottom: 1.2rem;
+    }
+
+    /* Headline */
+    .error-headline {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-weight: 300;
+      color: var(--white);
+      line-height: 1.25;
+      margin-bottom: 1rem;
+    }
+
+    .error-headline em {
+      font-style: italic;
+      color: var(--gold);
+    }
+
+    /* Sub-text */
+    .error-sub {
+      font-size: 0.92rem;
+      color: var(--muted);
+      line-height: 1.8;
+      max-width: 500px;
+      margin: 0 auto 2.5rem;
+    }
+
+    /* Coordinates line */
+    .error-coords {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.68rem;
+      color: rgba(74,158,255,0.45);
+      letter-spacing: 0.15em;
+      margin-bottom: 2.5rem;
+    }
+
+    /* Return button */
+    .return-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 0.75rem 2rem;
+      background: transparent;
+      border: 1px solid rgba(74, 158, 255, 0.4);
+      color: var(--accent);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border-radius: 2px;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .return-btn::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(74,158,255,0.08);
+      transform: translateX(-100%);
+      transition: transform 0.3s ease;
+    }
+
+    .return-btn:hover::before { transform: translateX(0); }
+    .return-btn:hover {
+      border-color: var(--accent);
+      color: var(--white);
+      box-shadow: 0 0 24px rgba(74,158,255,0.2);
+    }
+
+    .return-btn .arrow {
+      transition: transform 0.3s ease;
+    }
+    .return-btn:hover .arrow { transform: translateX(-4px); }
+
+    /* Footer note */
+    .error-footer-note {
+      margin-top: 3rem;
+      font-size: 0.75rem;
+      color: rgba(107, 137, 176, 0.5);
+      font-family: 'JetBrains Mono', monospace;
+      letter-spacing: 0.08em;
+    }
+
+    /* Fade-in animation */
+    @keyframes fadeSlideUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Floating astronaut */
+    .astronaut-wrap {
+      position: fixed;
+      top: 6rem;
+      right: 4%;
+      width: clamp(70px, 10vw, 110px);
+      z-index: 2;
+      pointer-events: none;
+      animation: float 7s ease-in-out infinite;
+    }
+
+    .astronaut-svg {
+      width: 100%;
+      height: auto;
+      filter: drop-shadow(0 0 12px rgba(74,158,255,0.25));
+      animation: tumble 20s linear infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50%       { transform: translateY(-22px); }
+    }
+
+    @keyframes tumble {
+      from { transform: rotate(0deg); }
+      to   { transform: rotate(360deg); }
+    }
+
+    /* Footer */
+    footer {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      padding: 1.5rem 2rem;
+      border-top: 1px solid rgba(74,158,255,0.08);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem;
+      color: var(--muted);
+      letter-spacing: 0.06em;
+    }
+
+    footer a { color: var(--gold); text-decoration: none; transition: color 0.2s; }
+    footer a:hover { color: var(--white); }
+    .footer-dev { font-size: 0.82rem; color: var(--gold); opacity: 0.75; margin-top: 0.3rem; }
+    .footer-dev a { color: var(--gold); }
+    .footer-dev a:hover { color: var(--white); }
+
+    /* Responsive nav */
+    @media (max-width: 600px) {
+      .nav-links { display: none; }
+      .astronaut-wrap { width: 60px; right: 2%; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="/" class="nav-logo">V. Diamantopoulos</a>
+    <ul class="nav-links">
+      <li><a href="/#about">About</a></li>
+      <li><a href="/#research">Research</a></li>
+      <li><a href="/#papers">Papers</a></li>
+      <li><a href="/#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- MAIN -->
+  <main>
+    <div class="error-container">
+
+      <!-- Orbiting planet SVG -->
+      <div class="orbit-wrap">
+        <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- Orbit ring -->
+          <ellipse cx="40" cy="40" rx="36" ry="14" stroke="rgba(74,158,255,0.25)" stroke-width="1" stroke-dasharray="4 3"/>
+          <!-- Sun / star at centre -->
+          <circle cx="40" cy="40" r="6" fill="#c9a84c" opacity="0.9"/>
+          <circle cx="40" cy="40" r="9" fill="none" stroke="rgba(201,168,76,0.3)" stroke-width="1"/>
+          <!-- Lost planet on the ring -->
+          <circle cx="72" cy="40" r="4" fill="#4a9eff"/>
+          <!-- Question mark on planet -->
+          <text x="72" y="44" font-family="monospace" font-size="6" fill="white" text-anchor="middle">?</text>
+        </svg>
+      </div>
+
+      <div class="error-label">Error 404 · Page Not Found</div>
+
+      <div class="error-code">404</div>
+
+      <h1 class="error-headline">
+        Are you lost <em>in the stars?</em><br>
+        This page does not exist.
+      </h1>
+
+      <p class="error-sub">
+        Even with the most precise VLBI coordinates, some things simply cannot be resolved.
+        The page you're looking for has either drifted beyond the observable universe,
+        or was never there to begin with.
+      </p>
+
+      <div class="error-coords">RA 00h 00m 00s · Dec +00° 00′ 00″ · redshift z = ∞</div>
+
+      <a href="/" class="return-btn">
+        <span class="arrow">←</span>
+        Return to known space
+      </a>
+
+    </div>
+  </main>
+
+  <!-- FLOATING ASTRONAUT -->
+  <div class="astronaut-wrap" aria-hidden="true">
+    <svg class="astronaut-svg" viewBox="0 0 80 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- Helmet -->
+      <ellipse cx="40" cy="28" rx="18" ry="20" fill="#0c2040" stroke="rgba(74,158,255,0.6)" stroke-width="1.5"/>
+      <!-- Visor -->
+      <ellipse cx="40" cy="27" rx="11" ry="12" fill="rgba(74,158,255,0.18)" stroke="rgba(74,158,255,0.5)" stroke-width="1"/>
+      <!-- Visor reflection -->
+      <ellipse cx="35" cy="22" rx="3" ry="4" fill="rgba(255,255,255,0.08)"/>
+      <!-- Body suit -->
+      <rect x="24" y="46" width="32" height="28" rx="8" fill="#0c2040" stroke="rgba(74,158,255,0.4)" stroke-width="1.2"/>
+      <!-- Chest panel -->
+      <rect x="32" y="52" width="16" height="10" rx="2" fill="rgba(74,158,255,0.12)" stroke="rgba(74,158,255,0.3)" stroke-width="0.8"/>
+      <circle cx="36" cy="57" r="1.5" fill="#4a9eff" opacity="0.7"/>
+      <circle cx="40" cy="57" r="1.5" fill="#c9a84c" opacity="0.7"/>
+      <circle cx="44" cy="57" r="1.5" fill="#4a9eff" opacity="0.5"/>
+      <!-- Left arm -->
+      <rect x="10" y="48" width="14" height="10" rx="5" fill="#0c2040" stroke="rgba(74,158,255,0.35)" stroke-width="1" transform="rotate(-15 17 53)"/>
+      <!-- Right arm -->
+      <rect x="56" y="48" width="14" height="10" rx="5" fill="#0c2040" stroke="rgba(74,158,255,0.35)" stroke-width="1" transform="rotate(15 63 53)"/>
+      <!-- Left leg -->
+      <rect x="28" y="72" width="10" height="18" rx="5" fill="#0c2040" stroke="rgba(74,158,255,0.3)" stroke-width="1"/>
+      <!-- Right leg -->
+      <rect x="42" y="72" width="10" height="18" rx="5" fill="#0c2040" stroke="rgba(74,158,255,0.3)" stroke-width="1"/>
+      <!-- Jetpack -->
+      <rect x="52" y="48" width="10" height="20" rx="4" fill="#071828" stroke="rgba(74,158,255,0.25)" stroke-width="1"/>
+      <ellipse cx="57" cy="70" rx="3" ry="2" fill="rgba(74,158,255,0.4)"/>
+      <!-- Tether line -->
+      <path d="M57 60 Q75 45 90 30" stroke="rgba(74,158,255,0.2)" stroke-width="0.8" stroke-dasharray="3 3" fill="none"/>
+      <!-- Stars nearby -->
+      <circle cx="68" cy="15" r="1" fill="white" opacity="0.6"/>
+      <circle cx="75" cy="30" r="0.8" fill="white" opacity="0.4"/>
+      <circle cx="15" cy="20" r="1" fill="white" opacity="0.5"/>
+    </svg>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2026 Vasilis Diamantopoulos</p>
+    <p class="footer-dev">Developed by <a href="https://www.linkedin.com/in/konstantinos-c-865b04271/" tabindex="-1">Konstantinos Chondrogiannis</a></p>
+  </footer>
+
+</body>
+</html>
